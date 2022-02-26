@@ -14,7 +14,7 @@ const ItemDetail: NextPage = () => {
             </p>
           </div>
         </div>
-        <div className="mt-10">
+        <div className="mt-5">
           <h1 className="text-3xl font-bold text-gray-900">Galaxy S50</h1>
           <p className="mt-3 text-3xl text-gray-900">$140</p>
           <p className="my-6 text-base text-gray-700">
