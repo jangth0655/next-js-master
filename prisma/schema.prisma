@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id Int @id @default(autoincrement()) //model의 id라는 것을 알려주는 역할
+  name String  
+  phone Int? @unique
+  email String? @unique
+  avatar String? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt //유저가 업데이트 될 때마다 field가 변핳거라고 알려준다
+}
