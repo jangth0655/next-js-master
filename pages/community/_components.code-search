@@ -1,0 +1,85 @@
+# Query: "../../components
+# ContextLines: 1
+
+29 results - 13 files
+
+pages/chats/[id].tsx:
+  1  import type { NextPage } from "next";
+  2: import Layout from "@components/layout";
+  3: import Message from "@components/message";
+  4  
+
+pages/chats/index.tsx:
+  2  import Link from "next/link";
+  3: import Layout from "@components/layout";
+  4  
+
+pages/community/[id].tsx:
+  1  import type { NextPage } from "next";
+  2: import Layout from "@components/layout";
+  3: import TextArea from "@components/textarea";
+  4  
+
+pages/items/[id].tsx:
+  1  import type { NextPage } from "next";
+  2: import Button from "@components/button";
+  3: import Layout from "@components/layout";
+  4  
+
+pages/items/upload.tsx:
+  1  import type { NextPage } from "next";
+  2: import Button from "@components/button";
+  3: import Input from "@components/input";
+  4: import Layout from "@components/layout";
+  5: import TextArea from "@components/textarea";
+  6  
+
+pages/profile/bought.tsx:
+  1  import { NextPage } from "next";
+  2: import Item from "@components/item";
+  3: import Layout from "@components/layout";
+  4  
+
+pages/profile/edit.tsx:
+  1  import type { NextPage } from "next";
+  2: import Button from "@components/button";
+  3: import Input from "@components/input";
+  4: import Layout from "@components/layout";
+  5  
+
+pages/profile/index.tsx:
+  2  import Link from "next/link";
+  3: import Layout from "@components/layout";
+  4  
+
+pages/profile/loved.tsx:
+  1  import type { NextPage } from "next";
+  2: import Item from "@components/item";
+  3: import Layout from "@components/layout";
+  4  
+
+pages/profile/sold.tsx:
+  1  import type { NextPage } from "next";
+  2: import Item from "@components/item";
+  3: import Layout from "@components/layout";
+  4  
+
+pages/stream/[id].tsx:
+  1  import type { NextPage } from "next";
+  2: import Layout from "@components/layout";
+  3: import Message from "@components/message";
+  4  
+
+pages/stream/create.tsx:
+  1  import type { NextPage } from "next";
+  2: import Button from "@components/button";
+  3: import Input from "@components/input";
+  4: import Layout from "@components/layout";
+  5: import TextArea from "@components/textarea";
+  6  
+
+pages/stream/index.tsx:
+  2  import Link from "next/link";
+  3: import FloatingButton from "@components/floating-button";
+  4: import Layout from "@components/layout";
+  5  
