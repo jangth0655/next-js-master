@@ -19,7 +19,7 @@
 ## Start
 
 - [x] refactoring : useform 이용하여 로그인 페이지, api활용
-- [ ] a
+- [x] authentication - twilo and sendgrid
 - [ ] b
 - [ ] c
 - [ ] d

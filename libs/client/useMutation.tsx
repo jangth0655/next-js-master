@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 
-interface UseMutation {
+interface UseMutation<T> {
   loading: boolean;
-  data?: undefined | any;
-  error?: undefined | any;
+  data?: T;
+  error?: T;
 }
 
-type UseMutationResult = [(data: any) => void, UseMutation];
+type UseMutationResult<T> = [(data: any) => void, UseMutation<T>];
 
-export default function useMutation(url: string): UseMutationResult {
+export default function useMutation<T = any>(
+  url: string
+): UseMutationResult<T> {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<undefined | any>(undefined);
   const [error, setError] = useState<undefined | any>(undefined);
@@ -20,7 +22,7 @@ export default function useMutation(url: string): UseMutationResult {
       const response = await axios.post(url, JSON.stringify(data), {
         headers: { "Content-Type": "application/json" },
       });
-      setData(response);
+      setData(response.data);
     } catch (error) {
       setError(error);
     } finally {

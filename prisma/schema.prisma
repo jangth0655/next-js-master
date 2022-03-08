@@ -15,9 +15,20 @@ datasource db {
 model User {
   id Int @id @default(autoincrement()) //model의 id라는 것을 알려주는 역할
   name String  
-  phone Int? @unique
+  phone String? @unique
   email String? @unique
   avatar String? 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt //유저가 업데이트 될 때마다 field가 변핳거라고 알려준다
+  tokens Token[]
+}
+
+model Token {
+  id Int @id @default(autoincrement())
+  payload String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int // User 전체가 db에 들어가는 것이 아니고 userId가 들어가게된다.
+  //prisma는 userId필드가 User모델의 id임을 알고 있다.
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
 }
