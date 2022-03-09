@@ -1,11 +1,20 @@
+import UserUser from "@libs/client/useUser";
 import type { NextPage } from "next";
+import Head from "next/head";
+
 import FloatingButton from "../components/floating-button";
 import Item from "../components/item";
 import Layout from "../components/layout";
 
 const Home: NextPage = () => {
+  const { user, isLoading } = UserUser();
+  console.log(user);
+
   return (
     <Layout title="Home" hasTabBar>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className=" flex flex-col space-y-5 ">
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
           <Item

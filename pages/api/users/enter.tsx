@@ -98,4 +98,8 @@ async function handler(
 }
 
 //먼저 함수를 어떻게 쓸지 적고, 함수를 세부적으로 구현
-export default withHandler("POST", handler);
+export default withHandler({
+  method: "POST",
+  handler,
+  isPrivate: false,
+});
