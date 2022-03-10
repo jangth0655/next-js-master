@@ -1,9 +1,12 @@
+import { UseFormRegisterReturn } from "react-hook-form";
+
 type Kind = "text" | "phone" | "price";
 
 interface InputProps {
   label: string;
   name: string;
   kind?: Kind;
+  register: UseFormRegisterReturn;
   [key: string]: any;
   required: boolean;
 }
@@ -11,6 +14,7 @@ interface InputProps {
 export default function Input({
   label,
   name,
+  type,
   kind = "text",
   register,
   required,
@@ -31,6 +35,7 @@ export default function Input({
             {...register}
             required={required}
             {...rest}
+            type={type}
             className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
           />
         </div>
@@ -41,6 +46,7 @@ export default function Input({
             <span className="text-sm text-gray-500">$</span>
           </div>
           <input
+            type={type}
             id={name}
             {...register}
             required={required}
@@ -58,6 +64,7 @@ export default function Input({
             +82
           </span>
           <input
+            type={type}
             id={name}
             {...register}
             required={required}

@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 
+export interface MutationResult {
+  ok: boolean;
+}
+
 interface UseMutation<T> {
   loading: boolean;
   data?: T;

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@components/button";
 import Input from "@components/input";
-import useMutation from "@libs/client/useMutation";
+import useMutation, { MutationResult } from "@libs/client/useMutation";
 import { cls } from "@libs/client/utils";
 import { useRouter } from "next/router";
 
@@ -15,10 +15,6 @@ type EnterForm = {
 type TokenForm = {
   token: number;
 };
-
-interface MutationResult {
-  ok: boolean;
-}
 
 export default function Enter() {
   const [enter, { loading, data, error }] =

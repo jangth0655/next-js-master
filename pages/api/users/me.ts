@@ -7,32 +7,17 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  const { token } = req.body;
-  const foundToken = await client.token.findUnique({
-    where: {
-      payload: token,
-    },
+  const profile = await client.user.findUnique({
+    where: { id: req.session.user?.id },
   });
 
-  if (!foundToken) return res.status(404).send({ ok: false });
-
-  req.session.user = {
-    id: foundToken.userId,
-  };
-  await req.session.save();
-  await client.token.deleteMany({
-    where: {
-      userId: foundToken.userId,
-    },
-  });
-  return res.status(200).json({ ok: true });
+  return res.json({ ok: true, profile });
 }
 
 //먼저 함수를 어떻게 쓸지 적고, 함수를 세부적으로 구현
 export default withApiSession(
   withHandler({
-    method: "POST",
+    method: ["GET"],
     handler,
-    isPrivate: false,
   })
 );
