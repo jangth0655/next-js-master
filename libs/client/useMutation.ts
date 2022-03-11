@@ -8,7 +8,7 @@ export interface MutationResult {
 interface UseMutation<T> {
   loading: boolean;
   data?: T;
-  error?: T | any;
+  error?: any;
 }
 
 type UseMutationResult<T> = [(data: any) => void, UseMutation<T>];
