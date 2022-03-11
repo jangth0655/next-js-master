@@ -7,11 +7,17 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  const profile = await client.user.findUnique({
-    where: { id: req.session.user?.id },
+  const {
+    session: { user },
+  } = req;
+  const reviews = await client.review.findMany({
+    where: {
+      createdForId: user?.id,
+    },
+    include: { createdBy: { select: { id: true, name: true, avatar: true } } },
   });
 
-  return res.json({ ok: true, profile });
+  return res.json({ ok: true, reviews });
 }
 
 //먼저 함수를 어떻게 쓸지 적고, 함수를 세부적으로 구현
