@@ -31,6 +31,8 @@ model User {
   sales Sale[]
   purchases Purchase[]
   records Record[]
+  streams Stream[]
+  messgaes Message[]
 }
 
 model Token {
@@ -149,4 +151,28 @@ enum Kind {
   Sale
   Fav
 }
+
+model Stream { 
+  createdAt DateTime @default(now())
+  id Int @id @default(autoincrement())
+  updatedAt DateTime @updatedAt
+  name String
+  description String @db.MediumText
+  price Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+   userId Int
+   messages Message[]
+}
+
+model Message { 
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+   userId Int
+   message String @db.MediumText
+   stream Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+   streamId Int
+}
+
 // 최대한 Model을 구성해 놓고 구현한다.
