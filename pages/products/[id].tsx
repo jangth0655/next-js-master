@@ -37,16 +37,22 @@ const ItemDetail: NextPage = () => {
       },
       false
     ); */
-    console.log(user);
+
     toggleFav({});
   };
   return (
     <Layout canGoBack>
       <div className="px-4  py-4">
         <div className="mb-8">
-          <div className="h-96 bg-slate-300" />
+          <img
+            src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.image}/public`}
+            className="h-96 bg-slate-300"
+          />
           <div className="flex cursor-pointer  items-center space-x-3 border-t border-b py-3">
-            <div className="h-12 w-12 rounded-full bg-slate-300" />
+            <img
+              src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.user?.avatar}/avatar`}
+              className="h-12 w-12 rounded-full bg-slate-300"
+            />
             <div>
               <p className="text-sm font-medium text-gray-700">
                 {data?.product?.user?.name}
@@ -116,12 +122,12 @@ const ItemDetail: NextPage = () => {
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Similar items</h2>
           <div className="mt-6 grid grid-cols-2 gap-4">
-            {data?.relatedProducts.map((product) => (
-              <div key={product.id}>
+            {data?.relatedProducts?.map((product) => (
+              <div key={product?.id}>
                 <div className="mb-4 h-56 w-full bg-slate-300" />
-                <h3 className="-mb-1 text-sm text-gray-700">{product.name}</h3>
+                <h3 className="-mb-1 text-sm text-gray-700">{product?.name}</h3>
                 <span className=" text-sm font-medium text-gray-900">
-                  {product.price}
+                  {product?.price}
                 </span>
               </div>
             ))}

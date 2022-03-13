@@ -11,7 +11,7 @@ interface StreamResponse {
 }
 
 const Stream: NextPage = () => {
-  const { data, error } = useSWR<StreamResponse>(`/api/streams`);
+  const { data } = useSWR<StreamResponse>(`/api/streams?page=1`);
   return (
     <Layout canGoBack>
       <div className="space-y-4 divide-y-2 py-10 ">

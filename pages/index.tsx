@@ -23,7 +23,6 @@ interface ProductsResponse {
 const Home: NextPage = () => {
   const { user, isLoading } = UserUser();
   const { data } = useSWR<ProductsResponse>("/api/products");
-  console.log(data);
 
   return (
     <Layout title="Home" hasTabBar>
@@ -31,7 +30,7 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
       <div className=" flex flex-col space-y-5 ">
-        {data?.product.map((product) => (
+        {data?.product?.map((product) => (
           <Item
             id={product.id}
             key={product.id}

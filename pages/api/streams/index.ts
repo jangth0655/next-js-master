@@ -10,6 +10,7 @@ async function handler(
   const {
     session: { user },
     body: { name, price, description },
+    query,
   } = req;
   if (req.method === "POST") {
     const stream = await client.stream.create({
