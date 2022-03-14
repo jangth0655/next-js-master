@@ -8,6 +8,7 @@ import Link from "next/link";
 import useMutation from "@libs/client/useMutation";
 import { cls } from "@libs/client/utils";
 import UserUser from "@libs/client/useUser";
+import Image from "next/image";
 
 interface ProductWithUser extends Product {
   user: User;
@@ -40,19 +41,35 @@ const ItemDetail: NextPage = () => {
 
     toggleFav({});
   };
+  console.log(data?.product.image);
+  console.log(data?.product.user.avatar);
+
   return (
     <Layout canGoBack>
       <div className="px-4  py-4">
         <div className="mb-8">
-          <img
-            src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.image}/public`}
-            className="h-96 bg-slate-300"
-          />
+          {data?.product.image ? (
+            <div className="relative pb-80">
+              <Image
+                src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.image}/public`}
+                className=" bg-slate-300 object-contain "
+                layout="fill"
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <div className="flex cursor-pointer  items-center space-x-3 border-t border-b py-3">
-            <img
-              src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.user?.avatar}/avatar`}
-              className="h-12 w-12 rounded-full bg-slate-300"
-            />
+            {data?.product.user.avatar ? (
+              <Image
+                width={48}
+                height={48}
+                src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.user?.avatar}/avatar`}
+                className="h-12 w-12 rounded-full bg-slate-300"
+              />
+            ) : (
+              ""
+            )}
             <div>
               <p className="text-sm font-medium text-gray-700">
                 {data?.product?.user?.name}

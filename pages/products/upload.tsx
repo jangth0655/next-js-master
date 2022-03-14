@@ -28,12 +28,7 @@ const Upload: NextPage = () => {
   const [uploadProduct, { loading, data, error }] =
     useMutation<UploadProductMutation>("/api/products");
 
-  const onValid = async ({
-    name,
-    price,
-    description,
-    photo,
-  }: UploadProduct) => {
+  const onValid = async ({ name, price, description }: UploadProduct) => {
     if (loading) return;
     if (photo && photo.length > 0) {
       const { uploadURL } = await (await fetch(`/api/files`)).json();
@@ -57,7 +52,7 @@ const Upload: NextPage = () => {
   useEffect(() => {
     if (photo && photo.length > 0) {
       const file = photo[0];
-      setPhotoPreview(URL.createObjectURL(file));
+      setPhotoPreview(URL.createObjectURL(file as any));
     }
   }, [photo]);
 
