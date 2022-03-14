@@ -41,10 +41,7 @@ const StreamDetail: NextPage = () => {
   const router = useRouter();
   const { register, handleSubmit, reset } = useForm<MessageForm>();
   const { data, error, mutate } = useSWR<StreamResponse>(
-    router.query.id ? `/api/streams/${router.query.id}` : null,
-    {
-      refreshInterval: 1000,
-    }
+    router.query.id ? `/api/streams/${router.query.id}` : null
   );
   const [sendMessage, { data: sendMessageData, loading }] =
     useMutation<SendMessage>(`/api/streams/${router.query.id}/messages`);
@@ -72,7 +69,15 @@ const StreamDetail: NextPage = () => {
   return (
     <Layout canGoBack>
       <div className="space-y-4 py-10  px-4">
-        <div className="aspect-video w-full rounded-md bg-slate-300 shadow-sm" />
+        {data?.stream.cloudflareId ? (
+          <iframe
+            className="aspect-video w-full rounded-md shadow-sm"
+            src={`https://iframe.videodelivery.net/${data?.stream.cloudflareId}`}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowFullScreen={true}
+          ></iframe>
+        ) : null}
+
         <div className="mt-5">
           <h1 className="text-3xl font-bold text-gray-900">
             {data?.stream?.name}
@@ -81,17 +86,28 @@ const StreamDetail: NextPage = () => {
             ${data?.stream?.price}
           </span>
           <p className=" my-6 text-gray-700">{data?.stream?.description}</p>
+          <div className="flex flex-col space-y-3 overflow-scroll rounded-md bg-orange-300 p-5">
+            <span>Stream Keys (secret)</span>
+            <span className="text-gray-600">
+              <span className="font-medium text-gray-800">Url</span> :{" "}
+              {data?.stream.cloudflareUrl}
+            </span>
+            <span className="text-gray-600">
+              <span className="font-medium text-gray-800">Key</span> :{" "}
+              {data?.stream.cloudflareKey}
+            </span>
+          </div>
         </div>
 
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Live Chat</h2>
 
           <div className="h-[50vh] space-y-4 overflow-y-scroll py-10  px-4 pb-16">
-            {data?.stream.messages.map((message) => (
+            {data?.stream?.messages?.map((message) => (
               <Message
-                key={message.id}
-                message={message.message}
-                reversed={message.user.id === user?.id}
+                key={message?.id}
+                message={message?.message}
+                reversed={message?.user?.id === user?.id}
               />
             ))}
           </div>
