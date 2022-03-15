@@ -1,11 +1,28 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@components/button";
 import Input from "@components/input";
 import useMutation, { MutationResult } from "@libs/client/useMutation";
 import { cls } from "@libs/client/utils";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+//Dynamic import : 앱을 다 만들고 나서 한다. - 앱을 최적화 할때 한다.
+//lazy loading을 할 수 있게 만들어 준다. -> 컴포넌트를 즉시 실항하지 않게
+//앱을 작게 나눠서 필요에 따라 그 컴포넌트를 불러오는 것.
+//유저가 해당컴포넌트를 불러오자 마자 유저의 브라우저에 다운로드된다.
+//결국 유저가 필요한 것만 html과 함께 다운로드 된다.
+//유저가 100% 그 컴포넌트를 보고 있을 때만 다운로드된다.
+
+const Bs = dynamic(
+  //@ts-ignore
+  () =>
+    new Promise((resolve) =>
+      setTimeout(() => resolve(import("@components/bs")), 10000)
+    ),
+  { ssr: false, suspense: true } //loading: () => <span>loading</span>
+);
 
 type EnterForm = {
   email?: string;
@@ -115,14 +132,19 @@ export default function Enter() {
                 />
               ) : null}
               {method === "phone" ? (
-                <Input
-                  register={register("phone")}
-                  name="phone"
-                  label="Phone number"
-                  type="number"
-                  kind="phone"
-                  required
-                />
+                <>
+                  <Suspense fallback={<button>Loading!!</button>}>
+                    <Bs />
+                  </Suspense>
+                  <Input
+                    register={register("phone")}
+                    name="phone"
+                    label="Phone number"
+                    type="number"
+                    kind="phone"
+                    required
+                  />
+                </>
               ) : null}
               {method === "email" ? <Button text={"Get login link"} /> : null}
               {method === "phone" ? (

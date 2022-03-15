@@ -24,4 +24,4 @@
 - [x] profile
 - [x] stream
 - [x] images / cloudflare, next/image
-- [ ] stream
+- [x] middleware, dynamic import, lazy-load, document component
