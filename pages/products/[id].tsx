@@ -41,14 +41,12 @@ const ItemDetail: NextPage = () => {
 
     toggleFav({});
   };
-  console.log(data?.product.image);
-  console.log(data?.product.user.avatar);
 
   return (
-    <Layout canGoBack>
+    <Layout seoTitle="Product detail" canGoBack>
       <div className="px-4  py-4">
         <div className="mb-8">
-          {data?.product.image ? (
+          {data?.product?.image ? (
             <div className="relative pb-80">
               <Image
                 src={`https://imagedelivery.net/h3kJx8b63YkXouCAFpwF5w/${data?.product?.image}/public`}
@@ -60,7 +58,7 @@ const ItemDetail: NextPage = () => {
             ""
           )}
           <div className="flex cursor-pointer  items-center space-x-3 border-t border-b py-3">
-            {data?.product.user.avatar ? (
+            {data?.product?.user?.avatar ? (
               <Image
                 width={48}
                 height={48}

@@ -25,3 +25,5 @@
 - [x] stream
 - [x] images / cloudflare, next/image
 - [x] middleware, dynamic import, lazy-load, document component
+- [ ] NextScript, get server side props
+- [ ] React18,

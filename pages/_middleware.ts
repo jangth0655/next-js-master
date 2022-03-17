@@ -5,7 +5,6 @@ export function middleware(req: NextRequest) {
   if (req.ua?.isBot) {
     return new Response("Plz dont be a bot. Be human.", { status: 403 });
   }
-  console.log(req.url);
 
   if (!req.url.includes("/api")) {
     if (!req.url.includes("/enter") && !req.cookies.carrotsession) {
