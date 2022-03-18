@@ -42,5 +42,7 @@
     "tab.unfocusedHoverBackground": "#090A0A",
     "editorGroupHeader.noTabsBackground": "#090A0A",
     "editorGroupHeader.tabsBackground": "#090A0A"
-  }
+  },
+  "editor.wordWrap": "on",
+  "diffEditor.wordWrap": "on"
 }
